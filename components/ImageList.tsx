@@ -13,7 +13,7 @@ export default function ImageList({ images, onDelete }: Props) {
         { images.map((image) => (
           <View key={image.id}>
             <Image source={{ uri: image.uri }} style={styles.image} />
-            <Button title="Удалить" onPress={() => onDelete(image)} />
+            <Button title="Удалить" color="#dc3545" onPress={() => onDelete(image)} />
           </View>
         )) }
       </View>
