@@ -44,8 +44,7 @@ export default function MarkerDetailScreen() {
 
   return (
     <View style={styles.container}>
-      <Text>Широта: {foundMarker?.coordinate.latitude}</Text>
-      <Text>Долгота: {foundMarker?.coordinate.longitude}</Text>
+      <Text style={styles.text}>Широта: {foundMarker?.coordinate.latitude.toFixed(2)}    Долгота: {foundMarker?.coordinate.longitude.toFixed(2)}</Text>
       <ImageList images={foundMarker!.images} onDelete={deleteImage}/>
       <Button title="Добавить изображение" onPress={addImage}/>
     </View>
@@ -57,4 +56,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
   },
+  text: {
+    textAlign: 'center',
+  }
 });

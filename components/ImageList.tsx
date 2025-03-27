@@ -24,13 +24,13 @@ export default function ImageList({ images, onDelete }: Props) {
 const styles = StyleSheet.create({
     col: {
       flex: 1,
-      marginVertical: 10
+      marginVertical: 8
     },
     row: {
       flexDirection: "row",
       flexWrap: "wrap",
       justifyContent: "center",
-      gap: 8
+      gap: 16
     },
     image: {
       width: 125,
