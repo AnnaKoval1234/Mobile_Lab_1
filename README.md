@@ -1,50 +1,30 @@
-# Welcome to your Expo app 👋
+# Инструкция по установке  
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
-
-## Get started
-
-1. Install dependencies
-
+В терминале установить проект:
    ```bash
-   npm install
+   npx create-expo-app@latest Mobile_Lab_1
+   ```
+Далее выполнить очистку от шаблонного кода:
+   ```bash
+   npm run reset-project
+   ```
+Затем установить зависимости:
+   ```bash
+   npm install expo react-native-maps expo-image-picker expo-router
+   ```
+Приложение запускается по команде
+   ```bash
+   npx expo start
    ```
 
-2. Start the app
+##  Краткое описание реализации  
+В types.ts были созданы интерфейсы MarkerData для маркеров и ImageData для картинок.  
+В _layout.tsx был объявлен контекст, описанный в компоненте MarkerContext.tsx -- он нужен для сохранения состояния между экранами.  
+Компонент MarkerList.tsx представляет собой отображение маркеров на экране. Свойства -- список MarkerData и функция добавления нового маркера, срабатывающая при долгом нажатии.  
+Компонент ImageList.tsx представляет собой отображение картинок на экране. Свойства -- список ImageData и функция удаления картинки, срабатывающая по кнопке Удалить.  
+В index.tsx отображается карта при помощи MapView и маркеры при помощи MarkerList. Здесь объявлен роутер, который переключает экраны, и вызывается контекст, который сохраняет маркеры.  
+В marker/[id].tsx отображаются картинки при помощи ImageList и кнопка Добавить изображение. Здесь используется id, который был получен при создании маркера, и контекст, из которого можно получить текущий маркер. При нажатии на кнопку Добавить изображение срабатывает функция addImage, которая в текущий маркер добавляет картинку, а по кнопке Удалить срабатывает функция deleteImage, которая удаляет картинку из маркера. Добавление и удаление картинок сохраняется в контексте.  
 
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+##  Проблемы или ограничения  
+Экран "marker/[id]", согласно _layout.tsx, должен называться Детали, но по какой-то причине приложение выбрасывает в консоль ошибку: No route named "markers/[id]" exists in nested children: ["index", "_sitemap", "+not-found", "marker/[id]"]  
+Приложение не запускается в браузере и на устройстве Huawei (из-за санкций смартфон не поддерживает гугл-сервисы)  
